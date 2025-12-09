@@ -1,0 +1,29 @@
+observability:
+  enabled: true
+  splunk:
+    enabled: false
+    endpoint: https://splunk.example.com/services/collector
+    token: ${SPLUNK_HEC_TOKEN:change-me}
+    source: unified-sdk
+  argus:
+    enabled: false
+    endpoint: https://argus.example.com/ingest
+    token: ${ARGUS_TOKEN:change-me}
+  custom:
+    enabled: true
+    name: console-pipeline
+spring:
+  application:
+    name: observability-example
+
+---
+spring:
+  config:
+    activate:
+      on-profile: all-adapters
+observability:
+  splunk:
+    enabled: true
+  argus:
+    enabled: true
+
