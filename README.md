@@ -64,6 +64,7 @@ observability:
 ## Docs
 - [docs/USER_GUIDE.md](docs/USER_GUIDE.md) – how to add the SDK, configure, and emit events.
 - [docs/SDK_EXAMPLE_RUN.md](docs/SDK_EXAMPLE_RUN.md) – how to run the sample app and what output to expect.
+- [docs/HLD.md](docs/HLD.md) – high-level design and hexagonal (ports/adapters) view.
 - Argus request body shape (example metric):
 ```json
 {

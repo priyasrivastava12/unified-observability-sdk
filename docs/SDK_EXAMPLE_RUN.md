@@ -19,6 +19,16 @@ mvn spring-boot:run
   - Expected response: HTTP 500 with body `simulated failure`
   - Console still shows log/metric/trace; completion events carry status=error and duration.
 
+## Try the job API (K8s-style submit simulation)
+- Submit accepted (default status=pending):
+  - `curl "http://localhost:8080/api/job"`
+  - Response: `job accepted: <jobId>`
+  - Console: job submit log/metric/trace (start + completion) with jobId/status/path/method/duration.
+- Submit failed:
+  - `curl "http://localhost:8080/api/job?status=failed&error_message=kube-timeout"`
+  - Response: HTTP 500 with `kube-timeout`
+  - Console: ERROR log + completion trace with `status=failed`, `error_message`, `error_code=JOB_SUBMIT_ERROR`.
+
 ## What happens
 - On startup, the sample emits one log, one metric, and one trace via `ObservabilityClient`.
 - Splunk/Argus adapters are **disabled by default** in `sdk-example/src/main/resources/application.yml`, so no HTTP calls are made.
